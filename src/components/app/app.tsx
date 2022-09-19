@@ -10,7 +10,7 @@ import Home from 'components/home/home';
 import { appTheme } from './common';
 import * as S from './app.styled';
 
-const App = () => (
+const App = (): JSX.Element => (
   <ThemeProvider theme={appTheme}>
     <S.GlobalStyle />
     <Router>
