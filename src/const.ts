@@ -5,6 +5,6 @@ export enum AppRoute {
 }
 
 export enum APIRoute {
-  Quests = 'http://localhost:3001/quests',
-  Order = 'http://localhost:3001/orders',
+  Quests = '/quests',
+  Order = '/orders',
 }
