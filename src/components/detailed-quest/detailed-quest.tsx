@@ -7,7 +7,7 @@ import * as S from './detailed-quest.styled';
 import { BookingModal } from './components/components';
 import { useParams } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../hooks/index';
-import { getQuest, getQuestLoadingStatus } from '../../store/quests-data/selectors';
+import { getQuest, getQuestLoadingStatus, getOrderStatus } from '../../store/quests-data/selectors';
 import { fetchQuestAction } from '../../store/api-actions';
 import PageNotFound from 'components/page-not-found/page-not-found';
 import LoadingSpinner from 'components/common/loading-spinner/loading-spinner';
@@ -18,6 +18,7 @@ const DetailedQuest = (): JSX.Element => {
   const [isBookingModalOpened, setIsBookingModalOpened] = useState(false);
   const quest = useAppSelector(getQuest);
   const questLoadingStatus = useAppSelector(getQuestLoadingStatus);
+  const isOrderBeingPosted = useAppSelector(getOrderStatus);
 
   useEffect(() => {
       dispatch(fetchQuestAction({ id: id }));
@@ -33,6 +34,10 @@ const DetailedQuest = (): JSX.Element => {
 
   if (!quest) {
     return <PageNotFound />;
+  }
+
+  if (isOrderBeingPosted) {
+    return <LoadingSpinner />;
   }
   
   const onBookingBtnClick = () => {
