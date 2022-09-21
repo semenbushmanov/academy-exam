@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { NameSpace } from '../../const';
 import { QuestsData } from '../../types/state';
-import { Quest } from 'types/quest';
 import {
   fetchQuestAction,
   fetchQuestsAction,
@@ -10,7 +9,7 @@ import {
 
 const initialState: QuestsData = {
   quests: [],
-  quest: {} as Quest,
+  quest: undefined,
   isDataLoading:false,
   isQuestLoading: false,
   isOrderBeingPosted: false,

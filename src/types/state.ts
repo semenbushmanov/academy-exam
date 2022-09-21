@@ -7,7 +7,7 @@ export type AppDispatch = typeof store.dispatch;
 
 export type QuestsData = {
   quests: Quests,
-  quest: Quest,
+  quest: Quest | undefined,
   isDataLoading: boolean,
   isQuestLoading: boolean,
   isOrderBeingPosted: boolean,
