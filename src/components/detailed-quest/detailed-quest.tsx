@@ -39,6 +39,10 @@ const DetailedQuest = (): JSX.Element => {
     setIsBookingModalOpened(true);
   };
 
+  const onCloseBtnClick = () => {
+    setIsBookingModalOpened(false);
+  };
+
   const { title, description, coverImg, type, level, peopleCount, duration } = quest;
 
   return (
@@ -82,7 +86,7 @@ const DetailedQuest = (): JSX.Element => {
           </S.PageDescription>
         </S.PageContentWrapper>
 
-        {isBookingModalOpened && <BookingModal />}
+        {isBookingModalOpened && <BookingModal onCloseBtnClick={onCloseBtnClick}/>}
       </S.Main>
     </MainLayout>
   );

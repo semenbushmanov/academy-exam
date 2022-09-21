@@ -4,7 +4,11 @@ import { useState, ChangeEvent, FormEvent } from 'react';
 import { useAppDispatch } from 'hooks';
 import { postOrderAction } from 'store/api-actions';
 
-const BookingModal = (): JSX.Element => {
+type BookingModalProps = {
+  onCloseBtnClick: () => void;
+};
+
+const BookingModal = ({onCloseBtnClick}: BookingModalProps): JSX.Element => {
   const dispatch = useAppDispatch();
   const [ currentUserInput, setCurrentUserInput ] = useState({
     name: '',
@@ -40,7 +44,7 @@ const BookingModal = (): JSX.Element => {
   return (
     <S.BlockLayer>
       <S.Modal>
-        <S.ModalCloseBtn>
+        <S.ModalCloseBtn onClick={onCloseBtnClick}>
           <IconClose width="16" height="16" />
           <S.ModalCloseLabel>Закрыть окно</S.ModalCloseLabel>
         </S.ModalCloseBtn>
