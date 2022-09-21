@@ -7,70 +7,99 @@ import { ReactComponent as IconScifi } from 'assets/img/icon-scifi.svg';
 import * as S from './quests-catalog.styled';
 import { Quests } from 'types/quest';
 import QuestItem from './quest-item';
+import { QuestType } from 'const';
+import { useState } from 'react';
 
 type QuestCatalogProps = {
   quests: Quests;
 };
 
-const QuestsCatalog = (props: QuestCatalogProps): JSX.Element => (
-  <>
-    <S.Tabs>
-      <S.TabItem>
-        <S.TabBtn isActive>
-          <IconAllQuests />
-          <S.TabTitle>Все квесты</S.TabTitle>
-        </S.TabBtn>
-      </S.TabItem>
+const QuestsCatalog = ({ quests }: QuestCatalogProps): JSX.Element => {
+  const [ currentQuestType, setCurrentQuestType ] = useState(QuestType.All);
+  let filteredQuests = quests;
 
-      <S.TabItem>
-        <S.TabBtn>
-          <IconAdventures />
-          <S.TabTitle>Приключения</S.TabTitle>
-        </S.TabBtn>
-      </S.TabItem>
+  if (currentQuestType !== QuestType.All) {
+    filteredQuests = quests.filter((quest) => quest.type === currentQuestType);
+  }
 
-      <S.TabItem>
-        <S.TabBtn>
-          <IconHorrors />
-          <S.TabTitle>Ужасы</S.TabTitle>
-        </S.TabBtn>
-      </S.TabItem>
+  return (
+    <>
+      <S.Tabs>
+        <S.TabItem>
+          <S.TabBtn 
+            isActive={currentQuestType === QuestType.All ? true : false} 
+            onClick={() => setCurrentQuestType(QuestType.All)}
+          >
+            <IconAllQuests />
+            <S.TabTitle>Все квесты</S.TabTitle>
+          </S.TabBtn>
+        </S.TabItem>
 
-      <S.TabItem>
-        <S.TabBtn>
-          <IconMystic />
-          <S.TabTitle>Мистика</S.TabTitle>
-        </S.TabBtn>
-      </S.TabItem>
+        <S.TabItem>
+          <S.TabBtn 
+            isActive={currentQuestType === QuestType.Adventures ? true : false}
+            onClick={() => setCurrentQuestType(QuestType.Adventures)}
+          >
+            <IconAdventures />
+            <S.TabTitle>Приключения</S.TabTitle>
+          </S.TabBtn>
+        </S.TabItem>
 
-      <S.TabItem>
-        <S.TabBtn>
-          <IconDetective />
-          <S.TabTitle>Детектив</S.TabTitle>
-        </S.TabBtn>
-      </S.TabItem>
+        <S.TabItem>
+          <S.TabBtn 
+            isActive={currentQuestType === QuestType.Horror ? true : false}
+            onClick={() => setCurrentQuestType(QuestType.Horror)}
+          >
+            <IconHorrors />
+            <S.TabTitle>Ужасы</S.TabTitle>
+          </S.TabBtn>
+        </S.TabItem>
 
-      <S.TabItem>
-        <S.TabBtn>
-          <IconScifi />
-          <S.TabTitle>Sci-fi</S.TabTitle>
-        </S.TabBtn>
-      </S.TabItem>
-    </S.Tabs>
+        <S.TabItem>
+          <S.TabBtn 
+            isActive={currentQuestType === QuestType.Mystic ? true : false}
+            onClick={() => setCurrentQuestType(QuestType.Mystic)}
+          >
+            <IconMystic />
+            <S.TabTitle>Мистика</S.TabTitle>
+          </S.TabBtn>
+        </S.TabItem>
 
-    <S.QuestsList>
-      {props.quests.map((quest) => (
-        <QuestItem
-          key={quest.id}
-          id={quest.id}
-          title={quest.title}
-          previewImg={quest.previewImg}
-          level={quest.level}
-          peopleCount={quest.peopleCount}
-        />
-      ))}
-    </S.QuestsList>
-  </>
-);
+        <S.TabItem>
+          <S.TabBtn 
+            isActive={currentQuestType === QuestType.Detective ? true : false}
+            onClick={() => setCurrentQuestType(QuestType.Detective)}
+          >
+            <IconDetective />
+            <S.TabTitle>Детектив</S.TabTitle>
+          </S.TabBtn>
+        </S.TabItem>
+
+        <S.TabItem>
+          <S.TabBtn 
+            isActive={currentQuestType === QuestType.SciFi ? true : false}
+            onClick={() => setCurrentQuestType(QuestType.SciFi)}
+          >
+            <IconScifi />
+            <S.TabTitle>Sci-fi</S.TabTitle>
+          </S.TabBtn>
+        </S.TabItem>
+      </S.Tabs>
+
+      <S.QuestsList>
+        {filteredQuests.map((quest) => (
+          <QuestItem
+            key={quest.id}
+            id={quest.id}
+            title={quest.title}
+            previewImg={quest.previewImg}
+            level={quest.level}
+            peopleCount={quest.peopleCount}
+          />
+        ))}
+      </S.QuestsList>
+    </>
+  );
+};
 
 export default QuestsCatalog;

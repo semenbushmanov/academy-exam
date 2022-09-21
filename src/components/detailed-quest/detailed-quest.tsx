@@ -27,7 +27,7 @@ const DetailedQuest = (): JSX.Element => {
     return <LoadingSpinner />;
   }
 
-  if (!id || !quest) {
+  if (!id) {
     return <PageNotFound />;
   }
 

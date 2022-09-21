@@ -13,3 +13,12 @@ export enum APIRoute {
 export enum NameSpace {
   Data = 'DATA',
 }
+
+export enum QuestType {
+  All = 'all',
+  Adventures = 'adventures',
+  Horror = 'horror',
+  Mystic = 'mystic',
+  Detective = 'detective',
+  SciFi = 'sci-fi',
+}
