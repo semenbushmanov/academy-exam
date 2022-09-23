@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { questsData } from './quests-data/quests-data';
+import { rootReducer } from './root-reducer';
 import { api } from '../services/api';
 
 export const store = configureStore({
-  reducer: questsData.reducer,
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       thunk: {
