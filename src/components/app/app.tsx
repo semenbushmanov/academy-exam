@@ -11,7 +11,7 @@ import { appTheme } from './common';
 import * as S from './app.styled';
 import { useAppSelector } from '../../hooks';
 import { getLoadingStatus } from '../../store/quests-data/selectors';
-import LoadingSpinner from '../common/loading-spinner/loading-spinner';
+import LoadingSpinner from '../loading-spinner/loading-spinner';
 import PageNotFound from 'components/page-not-found/page-not-found';
 import { AppRoute } from 'const';
 

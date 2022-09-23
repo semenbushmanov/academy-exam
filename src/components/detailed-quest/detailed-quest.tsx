@@ -10,7 +10,7 @@ import { useAppSelector, useAppDispatch } from '../../hooks/index';
 import { getQuest, getQuestLoadingStatus, getOrderStatus } from '../../store/quests-data/selectors';
 import { fetchQuestAction } from '../../store/api-actions';
 import PageNotFound from 'components/page-not-found/page-not-found';
-import LoadingSpinner from 'components/common/loading-spinner/loading-spinner';
+import LoadingSpinner from 'components/loading-spinner/loading-spinner';
 
 const DetailedQuest = (): JSX.Element => {
   const dispatch = useAppDispatch();
