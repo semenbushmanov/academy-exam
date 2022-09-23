@@ -3,17 +3,20 @@ import { ReactComponent as IconClose } from 'assets/img/icon-close.svg';
 import { useState, ChangeEvent, FormEvent } from 'react';
 import { useAppDispatch } from 'hooks';
 import { postOrderAction } from 'store/api-actions';
+import { toast } from 'react-toastify';
 
 type BookingModalProps = {
   onCloseBtnClick: () => void;
 };
+
+const PHONE_NUMBER_LENGTH = 10;
 
 const BookingModal = ({onCloseBtnClick}: BookingModalProps): JSX.Element => {
   const dispatch = useAppDispatch();
   const [ currentUserInput, setCurrentUserInput ] = useState({
     name: '',
     phone: '',
-    peopleCount: 0,
+    peopleCount: '',
     isLegal: false,
   });
 
@@ -26,7 +29,7 @@ const BookingModal = ({onCloseBtnClick}: BookingModalProps): JSX.Element => {
   };
 
   const handlePeopleCountChange = ({target}: ChangeEvent<HTMLInputElement>) => {
-    setCurrentUserInput({...currentUserInput, peopleCount: Number(target.value)});
+    setCurrentUserInput({...currentUserInput, peopleCount: target.value});
   };
 
   const handleLegalStatusChange = ({target}: ChangeEvent<HTMLInputElement>) => {
@@ -36,8 +39,30 @@ const BookingModal = ({onCloseBtnClick}: BookingModalProps): JSX.Element => {
   const handleSubmit = (evt: FormEvent) => {
     evt.preventDefault();
 
+    const digitsOnlyPattern = /^[0-9]+$/;
+    const isPeopleCountValid = digitsOnlyPattern.test(currentUserInput.peopleCount);
+    const isPhoneValid = digitsOnlyPattern.test(currentUserInput.phone);
+
+    if (!isPeopleCountValid || !isPhoneValid) {
+      toast.warn('Phone number and people number fields must contain only digits');
+      return;
+    }
+
+    if (currentUserInput.phone.length !== PHONE_NUMBER_LENGTH) {
+      toast.warn('Phone number must consist of 10 digits');
+      return;
+    }
+
+    const peopleCountNumber = Number(currentUserInput.peopleCount);
+
+    if (peopleCountNumber <= 0) {
+      toast.warn('The number of people should be positive');
+      return;
+    }
+
     if (currentUserInput.isLegal) {
-      dispatch(postOrderAction({order: currentUserInput}));
+      const userOrder = {...currentUserInput, peopleCount: peopleCountNumber};
+      dispatch(postOrderAction({order: userOrder}));
     }
   };
 
