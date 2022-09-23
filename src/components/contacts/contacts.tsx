@@ -2,6 +2,20 @@ import { MainLayout, PageTitle, PageSubtext } from 'components/common/common';
 import * as S from './contacts.styled';
 import Map from './map/map';
 import { MapCity, MapPoint } from 'const';
+import { City, Point } from 'types/map';
+
+const city: City = {
+  title: MapCity.Title,
+  lat: MapCity.Lat,
+  lng: MapCity.Lng,
+  zoom: MapCity.Zoom,
+};
+
+const point: Point = {
+  title: MapPoint.Title,
+  lat: MapPoint.Lat,
+  lng: MapPoint.Lng,
+};
 
 const Contacts = ():JSX.Element => (
   <MainLayout>
@@ -41,7 +55,7 @@ const Contacts = ():JSX.Element => (
             </S.ContactValue>
           </S.ContactsList>
 
-          <Map city={MapCity} point={MapPoint}/>
+          <Map city={city} point={point}/>
         </S.Contacts>
       </S.ContentWrapper>
     </S.Main>

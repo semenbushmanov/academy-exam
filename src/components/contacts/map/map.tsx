@@ -1,13 +1,13 @@
 import { useRef, useEffect } from 'react';
 import { Icon, Marker } from 'leaflet';
 import useMap from 'hooks/useMap';
-import { MapCity, MapPoint } from 'const';
+import { City, Point } from 'types/map';
 import 'leaflet/dist/leaflet.css';
 import { ContactsMap } from '../contacts.styled';
 
 type MapProps = {
-  city: typeof MapCity;
-  point: typeof MapPoint;
+  city: City;
+  point: Point;
 };
 
 const customIcon = new Icon({
@@ -23,8 +23,8 @@ const Map = ({city, point}: MapProps): JSX.Element => {
   useEffect(() => {
     if (map) {      
       const marker = new Marker({
-        lat: point.Lat,
-        lng: point.Lng,
+        lat: point.lat,
+        lng: point.lng,
       });
 
       marker.setIcon(customIcon).addTo(map);      
