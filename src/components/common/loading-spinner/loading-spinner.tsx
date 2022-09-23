@@ -1,5 +1,7 @@
+import * as S from './loading-spinner.styled';
+
 const LoadingSpinner = (): JSX.Element => (
-  <div><h1>Loading...</h1></div>
+  <S.SpinnerContainer><S.Spinner></S.Spinner></S.SpinnerContainer>
 );
 
 export default LoadingSpinner;

@@ -20,7 +20,10 @@ const App = (): JSX.Element => {
 
   if (isDataLoading) {
     return (
-      <LoadingSpinner />
+      <ThemeProvider theme={appTheme}>
+        <S.GlobalStyle />
+        <LoadingSpinner />
+      </ThemeProvider>
     );
   }
 
