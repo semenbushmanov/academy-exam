@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
+import * as S from './page-not-found.styled';
 
 const PageNotFound = (): JSX.Element => (
-  <div>    
-    <h1>404</h1>
-    <h2>Page not found</h2>
+  <S.PageContainer>    
+    <S.FirstHeading>404</S.FirstHeading>
+    <S.SecondHeading>Page not found</S.SecondHeading>
     <Link to={AppRoute.Home}>Back to the homepage</Link>
-  </div>
+  </S.PageContainer>
 );
 
 export default PageNotFound;
