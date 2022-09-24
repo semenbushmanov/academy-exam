@@ -4,7 +4,8 @@ import { toast } from 'react-toastify';
 
 const StatusCodeMapping: Record<number, boolean> = {
   [StatusCodes.BAD_REQUEST]: true,
-  [StatusCodes.NOT_FOUND]: true
+  [StatusCodes.NOT_FOUND]: true,
+  [StatusCodes.CREATED]: true,
 };
 
 const shouldDisplayError = (response: AxiosResponse) => !!StatusCodeMapping[response.status];

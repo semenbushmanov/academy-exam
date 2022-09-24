@@ -9,7 +9,7 @@ import {
 const initialState: QuestsData = {
   quests: [],
   isDataLoading:false,
-  isOrderBeingPosted: false,
+  isPosting: false,
 };
 
 export const questsData = createSlice({
@@ -29,13 +29,13 @@ export const questsData = createSlice({
         state.isDataLoading = false;
       })
       .addCase(postOrderAction.pending, (state) => {
-        state.isOrderBeingPosted = true;
+        state.isPosting = true;
       })
       .addCase(postOrderAction.fulfilled, (state) => {
-        state.isOrderBeingPosted = false;
+        state.isPosting = false;
       })
       .addCase(postOrderAction.rejected, (state) => {
-        state.isOrderBeingPosted = false;
+        state.isPosting = false;
       });
   }
 });

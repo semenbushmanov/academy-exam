@@ -1,8 +1,8 @@
 import { MainLayout, PageTitle, PageSubtext } from 'components/common/common';
-import * as S from './contacts.styled';
-import Map from './map/map';
 import { MapCity, MapPoint } from 'const';
 import { City, Point } from 'types/map';
+import Map from './map/map';
+import * as S from './contacts.styled';
 
 const city: City = {
   title: MapCity.Title,

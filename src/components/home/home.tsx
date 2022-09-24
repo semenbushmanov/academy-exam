@@ -5,9 +5,9 @@ import {
   PageSubtext,
 } from 'components/common/common';
 import { QuestsCatalog } from './components/components';
-import * as S from './home.styled';
 import { useAppSelector } from '../../hooks/index';
 import { getQuests } from '../../store/quests-data/selectors';
+import * as S from './home.styled';
 
 const HomePage = (): JSX.Element => {
   const quests = useAppSelector(getQuests);

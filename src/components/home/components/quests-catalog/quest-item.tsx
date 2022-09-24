@@ -1,7 +1,7 @@
 import { ReactComponent as IconPerson } from 'assets/img/icon-person.svg';
 import { ReactComponent as IconPuzzle } from 'assets/img/icon-puzzle.svg';
-import * as S from './quests-catalog.styled';
 import { AppRoute } from 'const';
+import * as S from './quests-catalog.styled';
 
 type QuestItemProps = {
   id: number;  

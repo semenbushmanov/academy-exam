@@ -4,6 +4,7 @@ import { useState, ChangeEvent, FormEvent } from 'react';
 import { useAppDispatch } from 'hooks';
 import { postOrderAction } from 'store/api-actions';
 import { toast } from 'react-toastify';
+import { memo } from 'react';
 
 type BookingModalProps = {
   onCloseBtnClick: () => void;
@@ -149,4 +150,4 @@ const BookingModal = ({onCloseBtnClick}: BookingModalProps): JSX.Element => {
   );
 };
 
-export default BookingModal;
+export default memo(BookingModal);

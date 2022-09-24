@@ -7,13 +7,13 @@ import {
 import DetailedQuest from 'components/detailed-quest/detailed-quest';
 import Contacts from 'components/contacts/contacts';
 import Home from 'components/home/home';
-import { appTheme } from './common';
-import * as S from './app.styled';
-import { useAppSelector } from '../../hooks';
-import { getLoadingStatus } from '../../store/quests-data/selectors';
 import LoadingSpinner from '../loading-spinner/loading-spinner';
 import PageNotFound from 'components/page-not-found/page-not-found';
+import { appTheme } from './common';
+import { useAppSelector } from '../../hooks';
+import { getLoadingStatus } from '../../store/quests-data/selectors';
 import { AppRoute } from 'const';
+import * as S from './app.styled';
 
 const App = (): JSX.Element => {
   const isDataLoading = useAppSelector(getLoadingStatus);
