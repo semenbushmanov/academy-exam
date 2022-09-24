@@ -23,6 +23,13 @@ export enum QuestType {
   SciFi = 'sci-fi',
 }
 
+export enum RequestStatus {
+  NotStarted,
+  Loading,
+  Success,
+  Error,
+}
+
 export const MapPoint = {
   Title: 'Набережная реки Карповка, д 5',
   Lat: 59.96822104365657,

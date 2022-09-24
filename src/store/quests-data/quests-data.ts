@@ -2,16 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 import { NameSpace } from '../../const';
 import { QuestsData } from '../../types/state';
 import {
-  fetchQuestAction,
   fetchQuestsAction,
   postOrderAction
 } from '../api-actions';
 
 const initialState: QuestsData = {
   quests: [],
-  quest: undefined,
   isDataLoading:false,
-  isQuestLoading: false,
   isOrderBeingPosted: false,
 };
 
@@ -30,16 +27,6 @@ export const questsData = createSlice({
       })
       .addCase(fetchQuestsAction.rejected, (state) => {
         state.isDataLoading = false;
-      })
-      .addCase(fetchQuestAction.pending, (state) => {
-        state.isQuestLoading = true;
-      })
-      .addCase(fetchQuestAction.fulfilled, (state, action) => {
-        state.quest = action.payload;
-        state.isQuestLoading = false;
-      })
-      .addCase(fetchQuestAction.rejected, (state) => {
-        state.isQuestLoading = false;
       })
       .addCase(postOrderAction.pending, (state) => {
         state.isOrderBeingPosted = true;

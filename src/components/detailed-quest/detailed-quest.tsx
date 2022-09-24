@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { MainLayout } from 'components/common/common';
 import { ReactComponent as IconClock } from 'assets/img/icon-clock.svg';
 import { ReactComponent as IconPerson } from 'assets/img/icon-person.svg';
@@ -6,34 +6,27 @@ import { ReactComponent as IconPuzzle } from 'assets/img/icon-puzzle.svg';
 import * as S from './detailed-quest.styled';
 import { BookingModal } from './components/components';
 import { useParams } from 'react-router-dom';
-import { useAppSelector, useAppDispatch } from '../../hooks/index';
-import { getQuest, getQuestLoadingStatus, getOrderStatus } from '../../store/quests-data/selectors';
-import { fetchQuestAction } from '../../store/api-actions';
+import { useAppSelector } from '../../hooks/index';
+import { getOrderStatus } from '../../store/quests-data/selectors';
 import PageNotFound from 'components/page-not-found/page-not-found';
 import LoadingSpinner from 'components/loading-spinner/loading-spinner';
+import { useQuestFetch } from 'hooks/use-quest-fetch';
+import { RequestStatus } from 'const';
 
 const DetailedQuest = (): JSX.Element => {
-  const dispatch = useAppDispatch();
   const { id } = useParams<{ id: string }>();
   const [isBookingModalOpened, setIsBookingModalOpened] = useState(false);
-  const quest = useAppSelector(getQuest);
-  const questLoadingStatus = useAppSelector(getQuestLoadingStatus);
+
   const isOrderBeingPosted = useAppSelector(getOrderStatus);
 
-  useEffect(() => {
-      dispatch(fetchQuestAction({ id: id }));
-  }, [id, dispatch]);
+  const [quest, status] = useQuestFetch(id);
 
-  if (questLoadingStatus) {
+  if (!id || status === RequestStatus.Error) {
+    return <PageNotFound />;
+  }
+
+  if (!quest || status === RequestStatus.Loading) {
     return <LoadingSpinner />;
-  }
-
-  if (!id) {
-    return <PageNotFound />;
-  }
-
-  if (!quest) {
-    return <PageNotFound />;
   }
 
   if (isOrderBeingPosted) {
